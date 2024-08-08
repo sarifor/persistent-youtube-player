@@ -74,6 +74,7 @@
             - 페이지에서 플레이어 API에 대한 JavaScript 다운로드를 완료하면
               API가 이 함수를 호출하여 페이지에서 API를 사용할 수 있음
             - onYouTubeIframeAPIReady 함수가 글로벌 스코프에 있어야 함
+            - iOS의 HTML5 플레이어에서 동영상을 인라인으로 재생 등
           */
           var player;
           window.onYouTubeIframeAPIReady = function() {
@@ -81,7 +82,7 @@
               height: '315',
               width: '560',
               videoId: videoId,
-              playerVars: { 'autoplay': 0, 'controls': 1 },
+              playerVars: { 'autoplay': 0, 'controls': 1, 'playsinline': 1 },
               events: {
                 'onReady': onPlayerReady
               }
