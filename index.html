@@ -1,5 +1,45 @@
 <html>
-  <iframe id="ytplayer" type="text/html" width="640" height="360"
-  src="https://www.youtube.com/embed/M7lc1UVf-VE?autoplay=1&origin=http://example.com"
-  frameborder="0"></iframe>
+  <head>
+    <meta charset="UTF-8">
+    <meta 
+      name="description" 
+      content="This example uses code for embedding YouTube videos with control buttons, based on https://lpla.tistory.com/185"
+    >
+
+    <style>
+      .video { margin: 50px auto; width: 560px; }
+      iframe { margin: auto; }
+      .btn_container { text-align: center; }    
+    </style>
+  </head>
+  
+  <div class="video">
+    <iframe 
+      width="560" 
+      height="315"  
+      title="YouTube video player" 
+      src="https://www.youtube.com/embed/97K2ViOvzLA?autoplay=0&controls=1&mute=0&loop=1&enablejsapi=1&version=3&playerapiid=ytplayer"
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+    >
+    </iframe>
+    
+    <div class="btn_container">
+      <div class="btn btn-primary play">Play</div>
+      <div class="btn btn-warning pause">Pause</div>
+    </div>
+  </div>
+
+  <script>
+    const currentYoutube = document.querySelector('iframe');
+
+    document.querySelector('.play').addEventListener('click', function() {
+      currentYoutube.contentWindow.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+    });
+
+    document.querySelector('.pause').addEventListener('click', function() {
+      currentYoutube.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+    });  
+  </script>
 </html>
